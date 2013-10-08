@@ -1,0 +1,13 @@
+>Problem Statement : https://www.hackerrank.com/challenges/battery
+
+>I have used "single-variable linear regression" as a solution to solve the above problem-statment of machine-learning.
+
+TO_DO :
+-------
+>The value of alpha matters a lot, it decides the amount of "jump" that we take everytime.
+If not properly chosen, the slope doesn't converge to zero, but keeps on toggling.
+
+Ideally, the alpha should be learnt in the program, and should be also changing.
+For this need to understand the math behind it.
+
+>The accuracy of the program is not tested, should be done.

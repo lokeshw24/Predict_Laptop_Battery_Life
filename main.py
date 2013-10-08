@@ -11,6 +11,7 @@ flag=1
 #Functions
 
 def get_input_data():
+	#gets the required training data from a file 
 	global x_values, y_values, total_input_pairs;
 
 	lines = [line.strip() for line in open('input_data.txt')]
@@ -25,9 +26,8 @@ def get_input_data():
 
 	total_input_pairs=len(x_values)
 
-	print x_values, y_values, total_input_pairs
-
 def get_partial_derivatives( guess_theta0, guess_theta1 ):
+	#calculates partial-derivatives of the function J(theta0, theta1) wrt theta0 and theta1
 	global x_values, y_values, alpha, total_input_pairs, flag;
 
 	sum0=0;
@@ -44,12 +44,10 @@ def get_partial_derivatives( guess_theta0, guess_theta1 ):
 	fault_tolerance=0.01
 
 	if ( -fault_tolerance<slope0<fault_tolerance and -fault_tolerance<slope1<fault_tolerance ) :
+		#ideally we should stop until slope=0, but we use fault_tolerance.
 		flag=0;
 	partial_derivatives[0] = (sum0/total_input_pairs);
 	partial_derivatives[1] = (sum1/total_input_pairs);
-
-	print partial_derivatives[0], partial_derivatives[1]
-
 
 def main():
 	global x_values, y_values, alpha, flag;
@@ -59,7 +57,6 @@ def main():
 	guess_theta0=x_values[0];
 	guess_theta1=y_values[0];
 	
-	print guess_theta0, guess_theta1
 	while(flag):
 		get_partial_derivatives(guess_theta0, guess_theta1)
 		guess_theta0 = guess_theta0 - alpha*partial_derivatives[0];
@@ -67,8 +64,11 @@ def main():
 	
 	print "Equation of Linear Regression is : y=",guess_theta0, "+", guess_theta1,"*(x)" ;
 
-	print "----------- Testing the accuracy --------"
-	for i in range(0, total_input_pairs) : 
-		print ( y_values[i] - ( guess_theta0 + guess_theta1*(x_values[i] ) ))
+	#print "----------- Testing the accuracy --------"
+	#for i in range(0, total_input_pairs) : 
+	#	print ( y_values[i] - ( guess_theta0 + guess_theta1*(x_values[i] ) ))
 
+	input_var = int(input("Enter input value :"))
+
+	print "Output is " , guess_theta0 + guess_theta1*input_var
 main()
